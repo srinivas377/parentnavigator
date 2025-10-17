@@ -1,0 +1,4 @@
+project_id = "zngwvwmkklcxpnbciuwp"
+
+[functions.career-insights]
+verify_jwt = false
