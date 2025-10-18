@@ -6,13 +6,8 @@ import { Card } from "./ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
-
 const AIChat = () => {
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState([
     {
       role: "assistant",
       content: "Hello! I'm your AI career counselor. Ask me anything about career outcomes, salaries, job opportunities, or post-graduation support for different fields of study. For example, you could ask: 'What's the average salary for computer science graduates?' or 'Which companies hire mechanical engineers?'"
@@ -25,7 +20,7 @@ const AIChat = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    const userMessage: Message = { role: "user", content: input };
+    const userMessage = { role: "user", content: input };
     setMessages(prev => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
@@ -37,7 +32,7 @@ const AIChat = () => {
 
       if (error) throw error;
 
-      const assistantMessage: Message = {
+      const assistantMessage = {
         role: "assistant",
         content: data.answer
       };
@@ -49,7 +44,7 @@ const AIChat = () => {
         description: "Failed to get response. Please try again.",
         variant: "destructive"
       });
-      
+
       setMessages(prev => [...prev, {
         role: "assistant",
         content: "I apologize, but I encountered an error processing your question. Please try again."
@@ -59,7 +54,7 @@ const AIChat = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
@@ -98,7 +93,7 @@ const AIChat = () => {
                         <Bot className="w-5 h-5 text-white" />
                       </div>
                     )}
-                    
+
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                         message.role === "user"
@@ -110,7 +105,7 @@ const AIChat = () => {
                         {message.content}
                       </p>
                     </div>
-                    
+
                     {message.role === "user" && (
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <User className="w-5 h-5 text-primary" />
@@ -118,7 +113,7 @@ const AIChat = () => {
                     )}
                   </div>
                 ))}
-                
+
                 {isLoading && (
                   <div className="flex gap-3">
                     <div className="w-8 h-8 rounded-full gradient-hero flex items-center justify-center flex-shrink-0">
@@ -168,7 +163,7 @@ const AIChat = () => {
               <p className="text-sm font-medium">CS Salaries</p>
               <p className="text-xs text-muted-foreground mt-1">Average salary for CS grads</p>
             </button>
-            
+
             <button
               onClick={() => setInput("Which companies hire mechanical engineering graduates?")}
               className="p-4 text-left rounded-xl bg-card border hover:border-primary/50 hover:shadow-md transition-all"
@@ -176,7 +171,7 @@ const AIChat = () => {
               <p className="text-sm font-medium">Top Recruiters</p>
               <p className="text-xs text-muted-foreground mt-1">Companies hiring by branch</p>
             </button>
-            
+
             <button
               onClick={() => setInput("What skills should a business management student develop for better placement?")}
               className="p-4 text-left rounded-xl bg-card border hover:border-primary/50 hover:shadow-md transition-all"

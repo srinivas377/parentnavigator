@@ -10,7 +10,7 @@ const Index = () => {
       <Statistics />
       <BranchCards />
       <AIChat />
-      
+
       <footer className="py-12 bg-muted/30 border-t">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground">

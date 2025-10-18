@@ -71,11 +71,11 @@ const BranchCards = () => {
             Comprehensive insights into salary ranges, top employers, and growth opportunities across major fields of study
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
           {branches.map((branch, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50"
             >
               <CardHeader>
@@ -97,7 +97,7 @@ const BranchCards = () => {
                   <span className="text-sm font-medium text-muted-foreground">Avg. Salary</span>
                   <span className="text-lg font-bold text-accent">{branch.avgSalary}</span>
                 </div>
-                
+
                 <div>
                   <p className="text-sm font-medium text-muted-foreground mb-2">Top Recruiters</p>
                   <div className="flex flex-wrap gap-2">
